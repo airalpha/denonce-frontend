@@ -1,16 +1,15 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {ApiService} from '../api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class NiveauScolaireService {
 
-  host = 'http://localhost:8080';
-  constructor(private http: HttpClient) { }
+  constructor(private api: ApiService) { }
 
   getNiveauScolaire(){
-    return this.http.get(this.host + '/niveau-scolaire');
+    return this.api.getResource(this.api.host + '/niveau-scolaire');
   }
 
 }

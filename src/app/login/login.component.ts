@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {AuthenticationService} from '../service/authentication.service';
 import {Router} from '@angular/router';
 import {AlertService} from '../service/alert/alert.service';
+import {ApiService} from '../service/api.service';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private authenticationService:AuthenticationService,
               private router:Router,
-              private alertService:AlertService) { }
+              private alertService:AlertService,
+              private api:ApiService) { }
 
   ngOnInit() {
   }
@@ -24,6 +26,7 @@ export class LoginComponent implements OnInit {
       data => {
         let jwt = data.headers.get('Authorization');
         this.authenticationService.saveToken(jwt);
+        this.api.loadToken();
         this.authenticationService.setDataOfAdmin();
         this.router.navigateByUrl("/admin");
         this.alertService.showAlert('Connecté !', 'Bienvenue '+admin.nom, 'success');

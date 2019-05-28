@@ -1,15 +1,14 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {ApiService} from '../api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TypeDenonciationService {
 
-  host = 'http://localhost:8080';
-  constructor(private http: HttpClient) { }
+  constructor(private api:ApiService) { }
 
   getTypeDenonciation(){
-    return this.http.get(this.host + '/type-denonciation');
+    return this.api.getResource(this.api.host + '/type-denonciation');
   }
 }

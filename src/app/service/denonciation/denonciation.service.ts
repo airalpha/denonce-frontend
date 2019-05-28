@@ -1,37 +1,33 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ApiService} from '../api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DenonciationService {
 
-  host = 'http://localhost:8080';
-  private jwtToken: string;
-  constructor(private http: HttpClient) { }
+  constructor(private api: ApiService) {
+  }
 
   getDenonciation() {
-    return this.http.get(this.host + '/denonciation');
+    return this.api.getResource(this.api.host + '/denonciation');
   }
 
-  getOneDenonciation(id){
-    return this.http.get(this.host + '/denonciation/'+id);
+  getOneDenonciation(id) {
+    return this.api.getResource(this.api.host + '/denonciation/' + id);
   }
 
-  addDenonciation(denonciation){
-    return this.http.post(this.host + '/denonciation', denonciation);
+  addDenonciation(denonciation) {
+    return this.api.postResource(this.api.host + '/denonciation', denonciation);
   }
 
-  updateDenonciation(id, denonciation){
-    if (this.jwtToken == null) this.loadToken();
-    return this.http.put(this.host + '/denonciation/'+id, denonciation, {headers: new HttpHeaders({'Authorization':this.jwtToken})});
+  updateDenonciation(id, denonciation) {
+    return this.api.putResource(this.api.host + '/denonciation/' + id, denonciation);
   }
 
   getDenonciations(motcle, page, size) {
-    return this.http.get(this.host + '/denonciation/chercher?nom='+motcle+'&page='+page+'&size='+size);
+    return this.api.getResource(this.api.host + '/denonciation/chercher?nom=' + motcle + '&page=' + page + '&size=' + size);
   }
 
-  loadToken(){
-    this.jwtToken = localStorage.getItem('token');
-  }
 }
+

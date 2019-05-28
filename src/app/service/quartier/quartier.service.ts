@@ -1,49 +1,41 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ApiService} from '../api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuartierService {
 
-  host = 'http://localhost:8080';
-  private jwtToken: string;
-  constructor(private http: HttpClient) { }
+  constructor(private api: ApiService) {
+  }
 
   getQuartier() {
-    return this.http.get(this.host + '/quartier');
+    return this.api.getResource(this.api.host + '/quartier');
   }
 
-  getOneQuartier(id){
-    return this.http.get(this.host + '/quartier/'+id);
+  getOneQuartier(id) {
+    return this.api.getResource(this.api.host + '/quartier/' + id);
   }
 
-  updateQuartier(id, quartier){
-    if (this.jwtToken == null) this.loadToken();
-    return this.http.put(this.host + '/quartier/'+id, quartier, {headers: new HttpHeaders({'Authorization':this.jwtToken})});
+  updateQuartier(id, quartier) {
+    return this.api.putResource(this.api.host + '/quartier/' + id, quartier);
   }
 
-  deleteQuartier(id){
-    if (this.jwtToken == null) this.loadToken();
-    return this.http.delete(this.host + '/quartier/'+id, {headers: new HttpHeaders({'Authorization':this.jwtToken})});
+  deleteQuartier(id) {
+    return this.api.deleteResource(this.api.host + '/quartier/' + id);
   }
 
-  addQuartier(quartier){
-    if (this.jwtToken == null) this.loadToken();
-    console.log(quartier);
-    return this.http.post(this.host + '/quartier', quartier, {headers: new HttpHeaders({'Authorization':this.jwtToken})});
+  addQuartier(quartier) {
+    return this.api.postResource(this.api.host + '/quartier', quartier);
   }
 
-  getEtabQuartier(id){
-    return this.http.get(this.host + '/etab-quartier/'+id);
+  getEtabQuartier(id) {
+    return this.api.getResource(this.api.host + '/etab-quartier/' + id);
   }
 
-  getQuartiers(motcle, page, size){
-    return this.http.get(this.host + '/quartier/chercher?nom='+motcle+'&page='+page+'&size='+size);
-  }
-
-  loadToken(){
-    this.jwtToken = localStorage.getItem('token');
+  getQuartiers(motcle, page, size) {
+    return this.api.getResource(this.api.host + '/quartier/chercher?nom=' + motcle + '&page=' + page + '&size=' + size);
   }
 
 }
+

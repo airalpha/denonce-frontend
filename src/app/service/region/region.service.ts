@@ -1,20 +1,19 @@
 import { Injectable } from '@angular/core';
-import {HttpClient} from '@angular/common/http';
+import {ApiService} from '../api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegionService {
 
-  host = 'http://localhost:8080';
-  constructor(private http: HttpClient) { }
+  constructor(private api: ApiService) { }
 
   getRegion(){
-    return this.http.get(this.host + '/region');
+    return this.api.getResource(this.api.host + '/region');
   }
 
   getVilleRegion(id){
-    return this.http.get(this.host + '/ville-region/'+id);
+    return this.api.getResource(this.api.host + '/ville-region/'+id);
   }
 
 }

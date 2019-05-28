@@ -1,24 +1,21 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ApiService} from '../api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CouvertureService {
-  host = 'http://localhost:8080';
-  jwtToken = null;
-  constructor(private http:HttpClient) { }
 
-  updateRole(nom, id){
-    if (this.jwtToken == null) this.loadToken();
-    return this.http.put(this.host + '/update-role/'+nom+'?id='+id, '', {headers: new HttpHeaders({'Authorization':this.jwtToken})});
+  constructor(private api: ApiService) {
   }
 
-  hideAdminRole(user){
-  return !(user.role.couverture.id != 0);
+  updateRole(nom, id) {
+    return this.api.putResource(this.api.host + '/update-role/' + nom + '?id=' + id, '');
   }
 
-  loadToken(){
-    this.jwtToken = localStorage.getItem('token');
+  hideAdminRole(user) {
+    return !(user.role.couverture.id != 0);
   }
+
 }
+

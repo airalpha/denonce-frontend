@@ -1,37 +1,29 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {ApiService} from '../api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
-  host = 'http://localhost:8080';
-  jwtToken = null;
-  constructor(private http:HttpClient) { }
+  constructor(private api:ApiService) { }
 
   getUsers(){
-    return this.http.get(this.host+"/users");
+    return this.api.getResource(this.api.host+"/users");
   }
 
   getOneUser(id){
-    return this.http.get(this.host+"/user/"+id)
+    return this.api.getResource(this.api.host+"/user/"+id)
   }
 
   updateUser(id, user){
-    if (this.jwtToken == null) this.loadToken();
-    return this.http.put(this.host+"/users/"+id, user, {headers: new HttpHeaders({'Authorization':this.jwtToken})});
+    return this.api.putResource(this.api.host+"/users/"+id, user);
   }
 
   addUser(user){
-    return this.http.post(this.host+"/register", user);
+    return this.api.postResource(this.api.host+"/register", user);
   }
 
   deleteUser(id){
-    if (this.jwtToken == null) this.loadToken();
-    return this.http.delete(this.host+"/users/"+id, {headers: new HttpHeaders({'Authorization':this.jwtToken})});
-  }
-
-  loadToken(){
-    this.jwtToken = localStorage.getItem('token');
+    return this.api.deleteResource(this.api.host+"/users/"+id);
   }
 }
