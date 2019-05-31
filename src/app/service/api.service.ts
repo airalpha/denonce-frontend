@@ -12,7 +12,7 @@ export class ApiService {
   public host:string = "http://localhost:8080";
 
   http : HttpClient;
-  jwtToken: string;
+  jwtToken: string = null;
 
   constructor(private httpClient: HttpClient, private alertService:AlertService) {
     this.http = httpClient;
@@ -26,6 +26,7 @@ export class ApiService {
   }
 
   public postResource(url, ressource){ //TO CHECK AND TEST
+    if (this.jwtToken==null) this.loadToken();
     if (new Date().getTime()/1000 > Number(localStorage.getItem("expired"))){
       this.alertService.showAlert('Reconnecté vous', 'Délai de connexion depassé', 'info');
     }else{
@@ -34,14 +35,17 @@ export class ApiService {
   }
 
   public putResource(url, ressource){ //TO CHECK AND TEST
+    if (this.jwtToken==null) this.loadToken();
     if (new Date().getTime()/1000 > Number(localStorage.getItem("expired"))){
       this.alertService.showAlert('Reconnecté vous', 'Délai de connexion depassé', 'info');
     }else{
+      this.loadToken();
       return this.http.put(url, ressource, {headers: new HttpHeaders({'Authorization':this.jwtToken})});
     }
   }
 
   public deleteResource(url){ //TO CHECK AND TEST
+    if (this.jwtToken==null) this.loadToken();
     if (new Date().getTime()/1000 > Number(localStorage.getItem("expired"))){
       this.alertService.showAlert('Reconnecté vous', 'Délai de connexion depassé', 'info');
     }else{

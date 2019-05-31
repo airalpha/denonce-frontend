@@ -185,4 +185,36 @@ export class AdminComponent implements OnInit {
     this.denonciations = [];
   }
 
+  addVille(ville) {
+    //console.log(ville);
+    this.villeService.addVille(ville).subscribe(
+      data => {
+        console.log(data);
+      },
+      error => {
+        console.log(error);
+      }
+    )
+  }
+
+  addQuartier(quartier) {
+    console.log(quartier);
+    this.quartierService.addQuartier(quartier).subscribe(
+      data => {
+        console.log(data)
+      },
+      error => {
+        console.log(error)
+      }
+    )
+
+  }
+
+  addEtablissement(etablissement) {
+    console.log(etablissement);
+    this.etablissementService.addEtablissement(etablissement).subscribe(
+      data => {console.log(data)},
+      error => {console.log(error)}
+    )
+  }
 }

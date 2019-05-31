@@ -5,17 +5,16 @@ import {AuthenticationService} from './authentication.service';
 @Injectable({
   providedIn: 'root'
 })
-export class RouteGuardService implements CanActivate{
+export class RouteGuard2Service implements CanActivate{
+
 
   constructor(private auth:AuthenticationService,
               private router:Router) { }
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot){
-    if (this.auth.isAdminLoggedIn())
+    if (this.auth.isSupperAdmin())
       return true;
-    this.router.navigate(['']);
+    this.router.navigate(['admin']);
     return false
   }
-
-
 }

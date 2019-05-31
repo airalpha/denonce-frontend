@@ -17,23 +17,24 @@ import {LogoutComponent} from './logout/logout.component';
 import {RouteGuardService} from './service/route-guard.service';
 import {ListUsersComponent} from './list-users/list-users.component';
 import {UserComponent} from './user/user.component';
+import {RouteGuard2Service} from './service/route-guard2.service';
 
 const routes: Routes = [
   { path: '', component: AccueilComponent},
   { path: 'login', component: LoginComponent},
   { path: 'logout', component: LogoutComponent, canActivate:[RouteGuardService]},
   { path: 'denoncer', component: DenonciationComponent },
-  { path: 'etablissement', component: ListEtablissementsComponent, canActivate:[RouteGuardService]},
-  { path: 'etablissement/:id', component: EtablissementComponent, canActivate:[RouteGuardService] },
+  { path: 'etablissement', component: ListEtablissementsComponent, canActivate:[RouteGuard2Service]},
+  { path: 'etablissement/:id', component: EtablissementComponent, canActivate:[RouteGuard2Service] },
   { path: 'admin', component: AdminComponent , canActivate:[RouteGuardService]},
-  { path: 'ville', component: ListVillesComponent, canActivate:[RouteGuardService] },
-  { path: 'ville/:id', component: VilleComponent, canActivate:[RouteGuardService] },
-  { path: 'denonciation', component: ListDenonciationsComponent , canActivate:[RouteGuardService]},
-  { path: 'denonciation/:id', component: UpdateDenonciationComponent, canActivate:[RouteGuardService] },
-  { path: 'quartier', component: ListQuartiersComponent , canActivate:[RouteGuardService]},
-  { path: 'user', component: ListUsersComponent , canActivate:[RouteGuardService]},
-  { path: 'user/:id', component: UserComponent , canActivate:[RouteGuardService]},
-  { path: 'quartier/:id', component: QuartierComponent , canActivate:[RouteGuardService]},
+  { path: 'ville', component: ListVillesComponent, canActivate:[RouteGuard2Service] },
+  { path: 'ville/:id', component: VilleComponent, canActivate:[RouteGuard2Service] },
+  { path: 'denonciation', component: ListDenonciationsComponent , canActivate:[RouteGuard2Service]},
+  { path: 'denonciation/:id', component: UpdateDenonciationComponent, canActivate:[RouteGuard2Service] },
+  { path: 'quartier', component: ListQuartiersComponent , canActivate:[RouteGuard2Service]},
+  { path: 'quartier/:id', component: QuartierComponent , canActivate:[RouteGuard2Service]},
+  { path: 'user', component: ListUsersComponent , canActivate:[RouteGuard2Service]},
+  { path: 'user/:id', component: UserComponent , canActivate:[RouteGuard2Service]},
   { path: '**', component: AccueilComponent },
 ];
 
