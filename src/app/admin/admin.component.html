@@ -55,6 +55,7 @@
                   <td>{{ ville.nom }}</td>
                   <td><a (click)="setQuartier(ville.id)" class="text-primary" ><i class="fas fa-eye"></i></a></td>
                 </tr>
+                <tr *ngIf="villes.length==0">Pas de ville</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addVilleModal"><i class="fas fa-plus"></i> Ville</button>
               </table>
@@ -77,6 +78,7 @@
                   <td>{{ quartier.ville?.nom }}</td>
                   <td><a (click)="setEtab(quartier.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
+                <tr *ngIf="quartiers.length==0">Pas de quartiers</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addQuartierModal"><i class="fas fa-plus"></i> Quartier</button>
               </table>
@@ -99,6 +101,7 @@
                   <td>{{ etablissement.quartier?.nom }}</td>
                   <td><a (click)="setDenon(etablissement.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
+                <tr *ngIf="etablissements.length==0">Pas d'etablissement</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addEtabModal"><i class="fas fa-plus"></i> Etab</button>
               </table>
@@ -121,6 +124,7 @@
                   <td>{{ denonciation.date }}</td>
                   <td>{{ (denonciation.statut == true) ? 'Suivie':'Non suivie' }}</td>
                 </tr>
+                <tr *ngIf="denonciations.length==0">Pas de denonciations</tr>
                 </tbody>
               </table>
             </div>
@@ -181,6 +185,7 @@
                   <td>{{ quartier.ville?.nom }}</td>
                   <td><a (click)="setEtab(quartier.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
+                <tr *ngIf="quartiers.length==0">Pas de quartiers</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addQuartierModal"><i class="fas fa-plus"></i> Quartier</button>
               </table>
@@ -203,6 +208,7 @@
                   <td>{{ etablissement.quartier?.nom }}</td>
                   <td><a (click)="setDenon(etablissement.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
+                <tr *ngIf="quartiers.length==0">Pas d'etablissement</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addEtabModal"><i class="fas fa-plus"></i> Etab</button>
               </table>
@@ -225,6 +231,7 @@
                   <td>{{ denonciation.date }}</td>
                   <td>{{ (denonciation.statut == true) ? 'Suivie':'Non suivie' }}</td>
                 </tr>
+                <tr *ngIf="denonciations.length==0">Pas de denonciations</tr>
                 </tbody>
               </table>
               </div>
@@ -285,6 +292,7 @@
                   <td>{{ etablissement.quartier?.nom }}</td>
                   <td><a (click)="setDenon(etablissement.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
+                <tr *ngIf="quartiers.length==0">Pas d'etablissement</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addEtabModal"><i class="fas fa-plus"></i> Etab</button>
               </table>
@@ -307,6 +315,7 @@
                   <td>{{ denonciation.date }}</td>
                   <td>{{ (denonciation.statut == true) ? 'Suivie':'Non suivie' }}</td>
                 </tr>
+                <tr *ngIf="denonciations.length==0">Pas de denonciations</tr>
                 </tbody>
               </table>
             </div>
@@ -367,6 +376,7 @@
                   <td>{{ denonciation.date }}</td>
                   <td>{{ (denonciation.statut == true) ? 'Suivie':'Non suivie' }}</td>
                 </tr>
+                <tr *ngIf="denonciations.length==0">Pas de denonciations</tr>
                 </tbody>
               </table>
             </div>

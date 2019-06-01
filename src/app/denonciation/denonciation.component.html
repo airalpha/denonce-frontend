@@ -13,7 +13,7 @@
       <div id="step1">
               <div class="form-group">
                 <label for="region">Region</label>
-                <select [(ngModel)]="region" (change)="setVille(region)" id="region" class="form-control" name="region">
+                <select [(ngModel)]="region" (change)="setVille(region)" id="region" class="form-control" name="region" required="required">
                   <option></option>
                   <option [(ngValue)]="region.id" *ngFor="let region of regions">{{ region.nomFr }}</option>
                 </select>
@@ -77,7 +77,7 @@
         <div class="form-group">
           <label for="personne_concerne">Personnes concernées</label>
           <select (change)="setAutreP(denonciation.personneConcerne)" [(ngModel)]="denonciation.personneConcerne" id="personneConcerne" class="form-control" name="typeDenonciation">
-            <option value="Professeur">Professeur</option>
+            <option selected value="Professeur">Professeur</option>
             <option value="Camarade">Camarade</option>
             <option value="Administration">Administration</option>
             <option value="Vendeur">Vendeur</option>
