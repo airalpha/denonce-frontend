@@ -25,7 +25,10 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  public postResource(url, ressource){ //TO CHECK AND TEST
+  public postResource(url, ressource, droit=true){ //TO CHECK AND TEST
+    if(droit==false){
+      return this.http.post(url, ressource);
+    }
     if (this.jwtToken==null) this.loadToken();
     if (new Date().getTime()/1000 > Number(localStorage.getItem("expired"))){
       this.alertService.showAlert('Reconnecté vous', 'Délai de connexion depassé', 'info');

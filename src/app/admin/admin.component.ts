@@ -7,6 +7,7 @@ import {VilleService} from '../service/ville/ville.service';
 import {DenonciationService} from '../service/denonciation/denonciation.service';
 import {AuthenticationService} from '../service/authentication.service';
 import {AdminService} from '../service/admin/admin.service';
+import {AlertService} from '../service/alert/alert.service';
 
 @Component({
   selector: 'app-admin',
@@ -25,8 +26,11 @@ export class AdminComponent implements OnInit {
   ns:number = 0;
   ids:any;
   dtype:any;
-  id_ville:any;
-  showQuartier = false;
+  denonciation:Object;
+  v = false;
+  qt = false;
+  r = false;
+  et = false;
 
   dataAd:any;
 
@@ -37,7 +41,8 @@ export class AdminComponent implements OnInit {
               private villeService:VilleService,
               private denonciationService:DenonciationService,
               private auth:AuthenticationService,
-              private adminService:AdminService) { }
+              private adminService:AdminService,
+              private alertService:AlertService) { }
 
   ngOnInit() {
     this.ids = localStorage.getItem('ids');
@@ -144,6 +149,7 @@ export class AdminComponent implements OnInit {
   }
 
   setQuartier(id){
+    this.v = true;
     this.villeService.getQuartierVille(id).subscribe(
       data => {
         console.log(data);
@@ -155,6 +161,7 @@ export class AdminComponent implements OnInit {
   }
 
   setEtab(id){
+    this.qt = true;
     this.quartierService.getEtabQuartier(id).subscribe(
       data => {
         console.log(data);
@@ -165,6 +172,7 @@ export class AdminComponent implements OnInit {
   }
 
   setDenon(id){
+    this.et = true;
       this.etablissementService.getDenonEtab(id).subscribe(
         data => {
           console.log(data);
@@ -174,6 +182,7 @@ export class AdminComponent implements OnInit {
   }
 
   setVille(id){
+    this.r = true;
     this.regionService.getVilleRegion(id).subscribe(
       data => {
         console.log(data);
@@ -190,6 +199,7 @@ export class AdminComponent implements OnInit {
     this.villeService.addVille(ville).subscribe(
       data => {
         console.log(data);
+        this.alertService.alert('Ville ajouté', 'success');
       },
       error => {
         console.log(error);
@@ -201,7 +211,8 @@ export class AdminComponent implements OnInit {
     console.log(quartier);
     this.quartierService.addQuartier(quartier).subscribe(
       data => {
-        console.log(data)
+        console.log(data);
+        this.alertService.alert('Quartier ajouté', 'success');
       },
       error => {
         console.log(error)
@@ -213,8 +224,25 @@ export class AdminComponent implements OnInit {
   addEtablissement(etablissement) {
     console.log(etablissement);
     this.etablissementService.addEtablissement(etablissement).subscribe(
-      data => {console.log(data)},
+      data => {
+        console.log(data);
+        this.alertService.alert('Etablissement ajouté', 'success');
+      },
       error => {console.log(error)}
+    )
+  }
+
+  update(denonciation) {
+    this.denonciation = denonciation;
+  }
+
+  saveDenonciation(value) {
+    this.denonciation['statut'] = value;
+    this.denonciationService.updateDenonciation(this.denonciation['id'], this.denonciation).subscribe(
+      data =>{
+        this.alertService.alert('Denonciation Modifié', 'success');
+      },
+      error => {}
     )
   }
 }

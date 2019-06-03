@@ -18,7 +18,7 @@ export class DenonciationService {
   }
 
   addDenonciation(denonciation) {
-    return this.api.postResource(this.api.host + '/denonciation', denonciation);
+    return this.api.postResource(this.api.host + '/denonciation', denonciation, false);
   }
 
   updateDenonciation(id, denonciation) {

@@ -40,7 +40,7 @@ export class DenonciationComponent implements OnInit {
   quartiers: Object = [ ];
   etablissements: Object = [];
   etablissement: Object = {"id":0,"nom":"", "quartier":{"nom":""}, "tel":"", "email":""};
-  denonciation: Object = {"id":0,"etablissement":{"nom":""}, "niveauScolaire":{}, "sexe":"", "age":0, "typeDenonciation":{}, "personneConcerne":"", "message":"", "date":new Date(), "statut":false};
+  denonciation: Object = {"id":0,"etablissement":{"nom":""}, "niveauScolaire":{}, "sexe":"", "age":0, "typeDenonciation":{}, "personneConcerne":"", "message":"", "date":Date.now(), "statut":false};
   villes: Object = [] ;
   regions: Object = [];
   typeDenonciations: Object = [] ;
@@ -58,6 +58,7 @@ export class DenonciationComponent implements OnInit {
               private alertService:AlertService) { }
 
   ngOnInit() {
+    //console.log(new Date());
     this.getEtablissement();
     this.getQuartier();
     this.getRegion();

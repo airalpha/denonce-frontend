@@ -7,9 +7,7 @@
     </div>
   </div>
 </header>
-<!--<fieldset class="border border-primary">
-  <legend  class="w-auto text-primary">Your Legend</legend>
-</fieldset>-->
+
 <section id="breadcrumb">
   <div class="container">
     <ol class="breadcrumb">
@@ -55,7 +53,8 @@
                   <td>{{ ville.nom }}</td>
                   <td><a (click)="setQuartier(ville.id)" class="text-primary" ><i class="fas fa-eye"></i></a></td>
                 </tr>
-                <tr *ngIf="villes.length==0">Pas de ville</tr>
+                <tr *ngIf="r==false">Clique sur la fleche</tr>
+                <tr *ngIf="villes.length==0&&r==true">Pas de ville</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addVilleModal"><i class="fas fa-plus"></i> Ville</button>
               </table>
@@ -78,7 +77,8 @@
                   <td>{{ quartier.ville?.nom }}</td>
                   <td><a (click)="setEtab(quartier.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
-                <tr *ngIf="quartiers.length==0">Pas de quartiers</tr>
+                <tr *ngIf="v==false">Clique sur l'oeil</tr>
+                <tr *ngIf="quartiers.length==0&&v==true">Pas de quartiers</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addQuartierModal"><i class="fas fa-plus"></i> Quartier</button>
               </table>
@@ -101,7 +101,8 @@
                   <td>{{ etablissement.quartier?.nom }}</td>
                   <td><a (click)="setDenon(etablissement.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
-                <tr *ngIf="etablissements.length==0">Pas d'etablissement</tr>
+                <tr *ngIf="qt==false">Clique sur l'oeil</tr>
+                <tr *ngIf="etablissements.length==0&&qt==true">Pas d'etablissement</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addEtabModal"><i class="fas fa-plus"></i> Etab</button>
               </table>
@@ -115,6 +116,7 @@
                   <th>Etablissement</th>
                   <th>Date</th>
                   <th>Statut</th>
+                  <th>Operation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -123,22 +125,16 @@
                   <td>{{ denonciation.etablissement?.nom }}</td>
                   <td>{{ denonciation.date }}</td>
                   <td>{{ (denonciation.statut == true) ? 'Suivie':'Non suivie' }}</td>
+                  <td><a (click)="update(denonciation)" class="text-success" data-toggle="modal" data-target="#updateDenonModal"><i class="fas fa-pencil-alt"></i></a></td>
                 </tr>
-                <tr *ngIf="denonciations.length==0">Pas de denonciations</tr>
+                <tr *ngIf="et==false">Clique sur l'oeil</tr>
+                <tr *ngIf="denonciations.length==0&&et==true">Pas de denonciations</tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
         <br><br>
-        <div class="card">
-          <div class="card-header bg-primary text-white">
-            Statistiques
-          </div>
-          <div class="card-body">
-            //Courbes
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -185,7 +181,8 @@
                   <td>{{ quartier.ville?.nom }}</td>
                   <td><a (click)="setEtab(quartier.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
-                <tr *ngIf="quartiers.length==0">Pas de quartiers</tr>
+                <tr *ngIf="v==false">Clique sur la fleche</tr>
+                <tr *ngIf="quartiers.length==0&&v==true">Pas de quartiers</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addQuartierModal"><i class="fas fa-plus"></i> Quartier</button>
               </table>
@@ -208,7 +205,8 @@
                   <td>{{ etablissement.quartier?.nom }}</td>
                   <td><a (click)="setDenon(etablissement.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
-                <tr *ngIf="quartiers.length==0">Pas d'etablissement</tr>
+                <tr *ngIf="qt==false">Clique sur l'oeil</tr>
+                <tr *ngIf="etablissements.length==0&&qt==true">Pas d'etablissement</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addEtabModal"><i class="fas fa-plus"></i> Etab</button>
               </table>
@@ -222,6 +220,7 @@
                   <th>Etablissement</th>
                   <th>Date</th>
                   <th>Statut</th>
+                  <th>Operations</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -230,22 +229,16 @@
                   <td>{{ denonciation.etablissement?.nom }}</td>
                   <td>{{ denonciation.date }}</td>
                   <td>{{ (denonciation.statut == true) ? 'Suivie':'Non suivie' }}</td>
+                  <td><a (click)="update(denonciation)" class="text-success" data-toggle="modal" data-target="#updateDenonModal"><i class="fas fa-pencil-alt"></i></a></td>
                 </tr>
-                <tr *ngIf="denonciations.length==0">Pas de denonciations</tr>
+                <tr *ngIf="et==false">Clique sur l'oeil</tr>
+                <tr *ngIf="denonciations.length==0&&et==true">Pas de denonciations</tr>
                 </tbody>
               </table>
               </div>
             </div>
           </div>
         <br><br>
-        <div class="card">
-          <div class="card-header bg-primary text-white">
-            Statistiques
-          </div>
-          <div class="card-body">
-            //Courbes
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -292,7 +285,8 @@
                   <td>{{ etablissement.quartier?.nom }}</td>
                   <td><a (click)="setDenon(etablissement.id)" class="text-success"><i class="fas fa-eye"></i></a></td>
                 </tr>
-                <tr *ngIf="quartiers.length==0">Pas d'etablissement</tr>
+                <tr *ngIf="qt==false">Clique sur la fleche</tr>
+                <tr *ngIf="etablissements.length==0&&qt==true">Pas d'etablissement</tr>
                 </tbody>
                 <button class="btn btn-outline-primary" data-toggle="modal" data-target="#addEtabModal"><i class="fas fa-plus"></i> Etab</button>
               </table>
@@ -306,6 +300,7 @@
                   <th>Etablissement</th>
                   <th>Date</th>
                   <th>Statut</th>
+                  <th>Operation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -314,22 +309,16 @@
                   <td>{{ denonciation.etablissement?.nom }}</td>
                   <td>{{ denonciation.date }}</td>
                   <td>{{ (denonciation.statut == true) ? 'Suivie':'Non suivie' }}</td>
+                  <td><a (click)="update(denonciation)" class="text-success" data-toggle="modal" data-target="#updateDenonModal"><i class="fas fa-pencil-alt"></i></a></td>
                 </tr>
-                <tr *ngIf="denonciations.length==0">Pas de denonciations</tr>
+                <tr *ngIf="et==false">Clique sur l'oeil</tr>
+                <tr *ngIf="denonciations.length==0&&et==true">Pas de denonciations</tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
         <br><br>
-        <div class="card">
-          <div class="card-header bg-primary text-white">
-            Statistiques
-          </div>
-          <div class="card-body">
-            //Courbes
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -367,6 +356,7 @@
                   <th>Etablissement</th>
                   <th>Date</th>
                   <th>Statut</th>
+                  <th>Operation</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -375,22 +365,16 @@
                   <td>{{ denonciation.etablissement?.nom }}</td>
                   <td>{{ denonciation.date }}</td>
                   <td>{{ (denonciation.statut == true) ? 'Suivie':'Non suivie' }}</td>
+                  <td><a (click)="update(denonciation)" class="text-success" data-toggle="modal" data-target="#updateDenonModal"><i class="fas fa-pencil-alt"></i></a></td>
                 </tr>
-                <tr *ngIf="denonciations.length==0">Pas de denonciations</tr>
+                <tr *ngIf="et==false">Clique sur la fleche</tr>
+                <tr *ngIf="denonciations.length==0&&et==true">Pas de denonciations</tr>
                 </tbody>
               </table>
             </div>
           </div>
         </div>
         <br><br>
-        <div class="card">
-          <div class="card-header bg-primary text-white">
-            Statistiques
-          </div>
-          <div class="card-body">
-            //Courbes
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -460,14 +444,6 @@
           </div>
         </div>
         <br><br>
-        <div class="card">
-          <div class="card-header bg-primary text-white">
-            Statistiques
-          </div>
-          <div class="card-body">
-            //Courbes
-          </div>
-        </div>
       </div>
     </div>
   </div>
@@ -583,6 +559,33 @@
             <button type="button" class="btn btn-secondary"  data-dismiss="modal">Close</button>
             <button type="submit" class="btn btn-primary">Ajouter</button>
           </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="updateDenonModal" tabindex="-1" role="dialog" aria-labelledby="showDenoncLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="showDenoncLabel">Modifier Dénonciation</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #u="ngForm">
+          <div class="form-group">
+            <label for="statut">Statut</label>
+            <select class="form-control" name="statut" ngModel required="" >
+              <option type="text" class="form-control"></option>
+              <option type="text" class="form-control" [ngValue]="true">Suivie</option>
+              <option type="text" class="form-control" [ngValue]="false">Non Suivie</option>
+            </select>
+          </div>
+          <input type="button" class="btn btn-primary" (click)="saveDenonciation(u.value.statut)" value="Enregistrer">
         </form>
       </div>
     </div>
