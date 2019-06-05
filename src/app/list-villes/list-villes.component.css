@@ -4,3 +4,7 @@ a>i {
   background-color: transparent;
   cursor: pointer;
 }
+
+.page-link{
+  cursor: pointer;
+}

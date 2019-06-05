@@ -6,6 +6,12 @@
         <!-- Button trigger modal -->
         <button class="btn btn-primary" data-toggle="modal" data-target="#addVilleModal"><i class="fas fa-plus"></i> User</button>
       </div>
+      <div class="col-md-4">
+        <form class="form-inline my-2 my-lg-0">
+          <input class="form-control mr-sm-2" type="search" [(ngModel)]="motCle" name="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success my-2 my-sm-0" (click)="chercher()"><i class="fas fa-search"></i></button>
+        </form>
+      </div>
     </div>
     <table class="table table-striped">
       <thead>
@@ -33,7 +39,7 @@
     <div class="container">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
-          <li class="page-item active" *ngFor="let page of pages; let i=index"><a class="page-link" (click)="goToPage(i)">{{ i+1 }}</a></li>
+          <li class="page-item" [ngClass]="{'active':currentPage==(i)}" *ngFor="let page of pages; let i=index"><a class="page-link" (click)="goToPage(i)">{{ i+1 }}</a></li>
         </ul>
       </nav>
     </div>

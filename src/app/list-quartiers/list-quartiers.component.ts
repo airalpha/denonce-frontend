@@ -26,7 +26,7 @@ export class ListQuartiersComponent implements OnInit {
   quartier: Object = {"id":0,"nom":"", "ville":{}};
   motCle = '';
   page = 0;
-  size = 1;
+  size = 5;
   pages:any;
   currentPage = 0;
   infoS: any[];
@@ -90,6 +90,7 @@ export class ListQuartiersComponent implements OnInit {
     if (quartier.nom.length < 3 || quartier.nom.trim()==""){
       this.errors.push("Nom trop court");
     }else{
+      this.errors = null;
       this.quartierService.addQuartier(quartier).subscribe(
        data => {
          console.log(data);

@@ -26,4 +26,8 @@ export class AdminService {
   deleteUser(id){
     return this.api.deleteResource(this.api.host+"/users/"+id);
   }
+
+  getUser(motcle, page, size){
+    return this.api.getResource(this.api.host + '/users/chercher?nom='+motcle+'&page='+page+'&size='+size);
+  }
 }

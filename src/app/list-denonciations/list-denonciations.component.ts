@@ -16,7 +16,7 @@ export class ListDenonciationsComponent implements OnInit {
 
   motCle = '';
   page = 0;
-  size = 1;
+  size = 5;
   pages:any;
   currentPage = 0;
   infoS:any;

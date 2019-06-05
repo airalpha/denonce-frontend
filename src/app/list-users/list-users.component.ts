@@ -16,6 +16,11 @@ export class ListUsersComponent implements OnInit {
   users:Object = [];
   errors:any;
   couvertures: Object = [];
+  motCle = '';
+  page = 0;
+  size = 5;
+  pages:any;
+  currentPage = 0;
 
   constructor(private adminService:AdminService,
               private auth:AuthenticationService,
@@ -80,6 +85,7 @@ export class ListUsersComponent implements OnInit {
       this.errors.push("Numero Incorect");
     }
     else{
+      this.errors = null;
       this.adminService.addUser(value).subscribe(
         data => {
           console.log(data);
@@ -112,6 +118,25 @@ export class ListUsersComponent implements OnInit {
         this.couvertures = data;
       }
     )
+  }
+
+  doSearch(){
+    this.adminService.getUser(this.motCle, this.currentPage, this.size).subscribe(
+      data => {
+        console.log(data['totalPages']);
+        this.users = data['content'];
+        this.pages = new Array(data['totalPages']);
+      }
+    )
+  }
+
+  chercher(){
+    this.doSearch();
+  }
+
+  goToPage(i){
+    this.currentPage = i;
+    this.doSearch()
   }
 
 }

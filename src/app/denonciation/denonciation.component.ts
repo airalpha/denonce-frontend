@@ -46,6 +46,7 @@ export class DenonciationComponent implements OnInit {
   typeDenonciations: Object = [] ;
   niveauScolaires: Object = [];
   pautre:boolean = false;
+  errors:any = null;
 
   constructor(private router: Router,
               private etablissementService: EtablissementService,
@@ -155,6 +156,9 @@ export class DenonciationComponent implements OnInit {
       data => {
         console.log(data);
         this.alertService.showAlert('Ok', 'message reçu', 'success');
+      },
+      error => {
+        this.alertService.showAlert('Error !', ''+error.error.message, 'error');
       }
     )
   }

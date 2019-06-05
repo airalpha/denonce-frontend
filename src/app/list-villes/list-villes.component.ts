@@ -28,11 +28,11 @@ export class ListVillesComponent implements OnInit {
   ville: Object = {"id":0,"nom":""};
   motCle = '';
   page = 0;
-  size = 1;
+  size = 5;
   pages:any;
   currentPage = 0;
   infoS:any;
-  errors:any;
+  errors:any = null;
   constructor(private router: Router,
               private villeService: VilleService,
               private regionService:RegionService,
@@ -105,6 +105,7 @@ export class ListVillesComponent implements OnInit {
     if (ville.nom.length < 3 || ville.nom.trim()==""){
       this.errors.push("Nom trop court");
     }else{
+      this.errors = null;
       this.villeService.addVille(ville).subscribe(
         data => {
           console.log(data)

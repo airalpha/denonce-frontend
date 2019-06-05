@@ -30,7 +30,7 @@ export class ListEtablissementsComponent implements OnInit {
   regions: Object = [];
   motCle = '';
   page = 0;
-  size = 1;
+  size = 5;
   pages:any;
   currentPage = 0;
   infoS: any[];
@@ -101,6 +101,7 @@ export class ListEtablissementsComponent implements OnInit {
     }if(!Number(etablissement.tel) || etablissement.tel.length < 9){
       this.errors.push("Numero incorecte")
     }else{
+      this.errors = null;
       this.etablissementService.addEtablissement(etablissement).subscribe(
         data => {
           console.log(data);

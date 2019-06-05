@@ -48,7 +48,7 @@
     <div class="container">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
-          <li class="page-item active" *ngFor="let page of pages; let i=index"><a class="page-link" (click)="goToPage(i)">{{ i+1 }}</a></li>
+          <li class="page-item" [ngClass]="{'active':currentPage==(i)}" *ngFor="let page of pages; let i=index"><a class="page-link" (click)="goToPage(i)">{{ i+1 }}</a></li>
         </ul>
       </nav>
     </div>

@@ -51,7 +51,7 @@
     <div class="container">
       <nav aria-label="Page navigation example">
         <ul class="pagination">
-          <li class="page-item active" *ngFor="let page of pages; let i=index"><a class="page-link" (click)="goToPage(i)">{{ i+1 }}</a></li>
+          <li class="page-item" [ngClass]="{'active':currentPage==(i)}" *ngFor="let page of pages; let i=index"><a class="page-link" (click)="goToPage(i)">{{ i+1 }}</a></li>
         </ul>
       </nav>
     </div>
@@ -81,7 +81,7 @@
             </select>
           </div>
           <form #f="ngForm" (ngSubmit)="addEtablissement(f.value)" >
-            <div *ngIf="errors" class="alert alert-danger alert-dismissible fade show">
+            <div *ngIf="errors.length!=0" class="alert alert-danger alert-dismissible fade show">
               <li *ngFor="let error of errors">
                 {{ error }}
               </li>
