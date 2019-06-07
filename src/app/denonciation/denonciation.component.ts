@@ -9,6 +9,10 @@ import {TypeDenonciationService} from '../service/type-denonciation/type-denonci
 import {NiveauScolaireService} from '../service/niveau-scolaire/niveau-scolaire.service';
 import {DenonciationService} from '../service/denonciation/denonciation.service';
 import {AlertService} from '../service/alert/alert.service';
+import set = Reflect.set;
+import {init} from 'protractor/built/launcher';
+declare var jquery:any;
+declare var $ :any;
 
 export class Denonciation {
   constructor(private id:number,
@@ -59,13 +63,26 @@ export class DenonciationComponent implements OnInit {
               private alertService:AlertService) { }
 
   ngOnInit() {
-    //console.log(new Date());
+    this.step();
     this.getEtablissement();
     this.getQuartier();
     this.getRegion();
     this.getVille();
     this.getNiveauScolaire();
     this.getTypeDenonciation();
+  }
+
+  step(){
+    $('#stepwizard').smartWizard({
+      theme: 'dots',
+      transitionEffect: 'slide',
+      transitionSpeed: '400',
+      lang: {
+        next: 'Suivant',
+        previous: 'Précedent'
+      }
+    });
+    console.log("Stepppp");
   }
 
   getEtablissement(){

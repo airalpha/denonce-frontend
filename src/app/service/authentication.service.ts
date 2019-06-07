@@ -4,20 +4,23 @@ import {JwtHelperService} from '@auth0/angular-jwt';
 import {log} from 'util';
 import {Router} from '@angular/router';
 import {AlertService} from './alert/alert.service';
+import {ApiService} from './api.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthenticationService {
 
-  host = 'http://localhost:8080';
+  host = window["cfgApiBaseUrl"];
   jwtToken:string = null;
   roles = [];
   private expiration: any;
 
   constructor(private http:HttpClient,
               private router:Router,
-              private alertService:AlertService) { }
+              private alertService:AlertService,
+              public api:ApiService
+              ) { }
 
   loginUser(user){
     return this.http.post(this.host+"/login", user, {observe:'response'});

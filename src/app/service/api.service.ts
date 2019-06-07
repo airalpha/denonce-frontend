@@ -9,7 +9,7 @@ import {AlertService} from './alert/alert.service';
 })
 export class ApiService {
 
-  public host:string = "http://localhost:8080";
+  public host:string = window["cfgApiBaseUrl"];
 
   http : HttpClient;
   jwtToken: string = null;
