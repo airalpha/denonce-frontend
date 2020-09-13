@@ -8,7 +8,7 @@
       </div>
       <div class="col-md-4">
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" [(ngModel)]="motCle" name="search" placeholder="Search" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" (ngModelChange)="chercher()" [(ngModel)]="motCle" name="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" (click)="chercher()"><i class="fas fa-search"></i></button>
         </form>
       </div>
@@ -25,11 +25,11 @@
       </thead>
       <tbody>
       <tr *ngFor="let user of users">
-        <td *ngIf="!this.couvertureService.hideAdminRole(user)">{{ user.id }}</td>
-        <td *ngIf="!this.couvertureService.hideAdminRole(user)">{{ user.nom }}</td>
-        <td *ngIf="!this.couvertureService.hideAdminRole(user)">{{ user.email }}</td>
-        <td *ngIf="!this.couvertureService.hideAdminRole(user)">{{ user.role?.couverture.nomFr }} {{ user.role?.couverture.nom }}</td>
-        <td *ngIf="!this.couvertureService.hideAdminRole(user)">
+        <td *ngIf="user.role?.couverture.id != 0">{{ user.id }}</td>
+        <td *ngIf="user.role?.couverture.id != 0">{{ user.nom }}</td>
+        <td *ngIf="user.role?.couverture.id != 0">{{ user.email }}</td>
+        <td *ngIf="user.role?.couverture.id != 0">{{ user.role?.couverture.nomFr }} {{ user.role?.couverture.nom }}</td>
+        <td *ngIf="user.role?.couverture.id != 0">
           <a (click)="updateUser(user.id)" class="text-primary"><i class="fas fa-pencil-alt"></i></a>&nbsp;&nbsp;
           <a (click)="showModal(user)" class="text-danger"><i class="fas fa-trash"></i></a>
         </td>

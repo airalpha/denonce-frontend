@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
         this.alertService.showAlert('Connecté !', 'Bienvenue '+admin.nom, 'success');
       },
       err =>{
+        console.log(err);
         this.error = true;
       }
     )

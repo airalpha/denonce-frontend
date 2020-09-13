@@ -74,7 +74,7 @@ export class ListVillesComponent implements OnInit {
           }
         )
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.alertService.showAlert('Annulé', 'Aucune suppression !', 'error')
+        this.alertService.showAlert('Annulé', 'Aucune suppression !', 'info')
       }
     })
   }

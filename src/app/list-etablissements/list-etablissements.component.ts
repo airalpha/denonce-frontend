@@ -88,13 +88,14 @@ export class ListEtablissementsComponent implements OnInit {
           }
         )
       } else if (result.dismiss === Swal.DismissReason.cancel) {
-        this.alertService.showAlert('Annulé', 'Aucune suppression !', 'error')
+        this.alertService.showAlert('Annulé', 'Aucune suppression !', 'info')
       }
     })
   }
 
 
   addEtablissement(etablissement){
+    //console.log(etablissement);
     this.errors = [];
     if (etablissement.nom.length < 8 || etablissement.nom.trim()==""){
       this.errors.push("Nom trop court");

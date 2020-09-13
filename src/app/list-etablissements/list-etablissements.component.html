@@ -8,7 +8,7 @@
       </div>
       <div class="col-md-4">
         <form class="form-inline my-2 my-lg-0">
-          <input class="form-control mr-sm-2" type="search" [(ngModel)]="motCle" name="search" placeholder="Search" aria-label="Search">
+          <input class="form-control mr-sm-2" type="search" (ngModelChange)="chercher()" [(ngModel)]="motCle" name="search" placeholder="Search" aria-label="Search">
           <button class="btn btn-outline-success my-2 my-sm-0" (click)="chercher()"><i class="fas fa-search"></i></button>
         </form>
       </div>
@@ -81,7 +81,7 @@
             </select>
           </div>
           <form #f="ngForm" (ngSubmit)="addEtablissement(f.value)" >
-            <div *ngIf="errors.length!=0" class="alert alert-danger alert-dismissible fade show">
+            <div *ngIf="errors" class="alert alert-danger alert-dismissible fade show">
               <li *ngFor="let error of errors">
                 {{ error }}
               </li>

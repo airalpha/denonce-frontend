@@ -69,7 +69,7 @@ export class ListUsersComponent implements OnInit {
         Swal.fire(
           'Annulé',
           'Aucune suppression !',
-          'error'
+          'info'
         )
       }
     })
