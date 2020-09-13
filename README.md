@@ -31,4 +31,10 @@ Backend <a href="https://github.com/AIRALPHA/denonce-backend">here</a>
      alt=""
      style="float: left; margin-right: 10px;" />
      
+
+## Login Admin
+
+login: admin1
+password: 1234
+     
      
