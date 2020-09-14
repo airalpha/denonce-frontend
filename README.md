@@ -1,5 +1,8 @@
 # Denonce Front
 
+Plateforme web pour dénoncer les ﬂéaux sociaux
+rencontrés dans les établissements scolaires. <br/><br/>
+
 Backend <a href="https://github.com/AIRALPHA/denonce-backend">here</a>
 
 ## Demo
